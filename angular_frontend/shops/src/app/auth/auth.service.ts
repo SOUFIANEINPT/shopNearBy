@@ -6,15 +6,15 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   constructor(private router: Router,private http:HttpClient) {}
-  signupUser(email: string, password: string) {
+  signInUser(username:string, password: string) {
     
-  return  this.http.post('http://localhost:8000/api/login',{'email':email,'password':password}, {
+  return  this.http.post('http://localhost:8000/api/login',{'username':username,'password':password}, {
       observe: 'body',
       responseType: 'json'
     })
   }
-  signinUser(email: string, password: string) {
-   return this.http.post('http://localhost:8000/api/register',{'username':email,'password':password}, {
+  signUpUser(name: string,email:string,password: string) {
+   return this.http.post('http://localhost:8000/api/register',{'name':name,'email':email,'password':password}, {
       observe: 'body',
       responseType: 'json'
     })

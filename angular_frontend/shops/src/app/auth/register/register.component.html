@@ -3,7 +3,10 @@
     Sign Up
   </h1>
 </div>
-<form class="form-signin" (ngSubmit)="onSignin(f)"  #f="ngForm">
+<div class="alert alert-danger" *ngIf="messgeOfincorrect" >
+    {{messgeOfincorrect}}
+</div>
+<form class="form-signin" (ngSubmit)="onSignup(f)"  #f="ngForm">
   <div class="text-center mb-4">
   </div>
   <div class="form-label-group">
@@ -14,10 +17,14 @@
           username is required
             </div>
       </div>
+      <div class="alert alert-danger" *ngIf="messgaeError.name?.length > 0" >
+        <div *ngFor='let nameError of messgaeError.name'>  
+        {{nameError}}
+      </div>
     </div>
   <div class="form-label-group">
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" ngModel class="form-control"  #email="ngModel" required>
+    <input type="email" id="email" name="email" ngModel class="form-control"  #email="ngModel" required pattern="[^ @]*@[^ @]*">
     <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)" >
         <div [hidden]="!email.errors.required" >
             email is required
@@ -25,6 +32,11 @@
           <div [hidden]="!email.errors.pattern">
             email is invalid
           </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="messgaeError.email?.length > 0" >
+        <div *ngFor='let emailError of messgaeError.email'> 
+        {{emailError}}
+      </div>
     </div>
   </div>
 
@@ -44,7 +56,11 @@
           <div [hidden]="!password.errors.minlength">
             password must be at least 6 characters long.
           </div>
-  
+          <div class="alert alert-danger" *ngIf="messgaeError.password?.length > 0" >
+              <div *ngFor='let passwordError of messgaeError.password'></div>  
+              {{passwordError}}
+            </div>
+          </div>
         </div>
   </div>
   <div class="form-label-group">

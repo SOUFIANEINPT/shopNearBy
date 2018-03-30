@@ -8,23 +8,27 @@ import 'rxjs/Rx';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-   messgaeError:string;
-  constructor(private authservice:AuthService) { }
+   messgaeError={username:[],password:[]};
+   messgeOfincorrect=""
+   constructor(private authservice:AuthService) { }
 
   ngOnInit() {
   }
   onSignin(form:NgForm) {
-    console.log("form",form)
-    
+    this.messgeOfincorrect="";
+    this.messgaeError={username:[],password:[]};
     const email = form.value.email;
     const password = form.value.password;
-  this.authservice.signupUser(email,password).subscribe(
+    const username= form.value.username;
+  this.authservice.signInUser(email,password).subscribe(
     data => {
 console.log("data",data)
     }
     ,error => {
-   this.messgaeError=error;
-   console.log("data",error)
+      console.log("error",error.error)
+      this.messgaeError=error.error.errors;
+      this.messgeOfincorrect=error.error.message
+ 
     }
   );
   }
