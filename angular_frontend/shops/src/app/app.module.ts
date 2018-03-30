@@ -12,6 +12,7 @@ import { AuthGuard} from './auth/auth-guard.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 const appRoutes: Routes=[
   { path: 'login', component: LoginComponent},
   { path: 'register',component: RegisterComponent},
@@ -32,9 +33,15 @@ const appRoutes: Routes=[
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
-  providers: [AuthService,AuthGuard,AuthInterceptorService],
+  providers: [AuthService,AuthGuard,AuthInterceptorService, [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:AuthInterceptorService,
+      multi: true
+    }
+  ]],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

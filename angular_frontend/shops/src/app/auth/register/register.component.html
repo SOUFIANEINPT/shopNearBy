@@ -7,6 +7,15 @@
   <div class="text-center mb-4">
   </div>
   <div class="form-label-group">
+      <label for="email">Username</label>
+      <input type="text" id="username" name="username" ngModel class="form-control"  #username="ngModel" required>
+      <div class="alert alert-danger" *ngIf="username.errors && (username.dirty || username.touched)" >
+          <div [hidden]="!username.errors.required" >
+          username is required
+            </div>
+      </div>
+    </div>
+  <div class="form-label-group">
     <label for="email">Email</label>
     <input type="email" id="email" name="email" ngModel class="form-control"  #email="ngModel" required>
     <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)" >
