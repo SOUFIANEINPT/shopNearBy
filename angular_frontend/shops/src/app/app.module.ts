@@ -32,7 +32,6 @@ const appRoutes: Routes=[
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [AuthService,AuthGuard,AuthInterceptorService],
