@@ -9,7 +9,9 @@ import { MyPreferredShopsComponent } from './my-preferred-shops/my-preferred-sho
 import { NearbyShopsComponent } from './nearby-shops/nearby-shops.component';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard} from './auth/auth-guard.service';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 const appRoutes: Routes=[
   { path: 'login', component: LoginComponent},
   { path: 'register',component: RegisterComponent},
@@ -23,13 +25,17 @@ const appRoutes: Routes=[
     LoginComponent,
     RegisterComponent,
     MyPreferredShopsComponent,
-    NearbyShopsComponent
+    NearbyShopsComponent,
+    
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService,AuthGuard],
+  providers: [AuthService,AuthGuard,AuthInterceptorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
