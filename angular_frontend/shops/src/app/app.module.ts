@@ -16,14 +16,18 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthCookiesService } from './auth/login/auth-cookies.service';
 import { NotFoundComponent } from './somting-else/not-found/not-found.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 const appRoutes: Routes=[
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'register',component: RegisterComponent},
+  { path: 'logout', component: LogoutComponent,canActivate:[AuthGuard]},
+
   { path: 'MyPreferredShops', component:MyPreferredShopsComponent, canActivate:[AuthGuard]},
   { path: 'NearbyShops',component:NearbyShopsComponent,canActivate:[AuthGuard]},
+
   {path: '404',component:NotFoundComponent},
-  { path: '*', redirectTo: '/404'},
+  { path: '**', redirectTo: '404'},
 ]
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ const appRoutes: Routes=[
     RegisterComponent,
     MyPreferredShopsComponent,
     NearbyShopsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
