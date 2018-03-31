@@ -3,25 +3,29 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul *ngIf="!authservice.isAuthenticated();else elseBlock" class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/login">Login <span class="sr-only">(current)</span></a>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault" *ngIf="!authservice.isAuthenticated();else elseBlock">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link"  routerLinkActive="active" routerLink="/login">Login <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/register">Register</a>
+        <a class="nav-link"  routerLinkActive="active" routerLink="/register">Register</a>
       </li>
     </ul>
-    <ng-template #elseBlock>
-        <ul class="navbar-nav my-2 my-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" routerLink="/NearbyShops">My preferred shops<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/MyPreferredShops">Nearby Shops</a>
-            </li>
-          </ul>
-    </ng-template>
-    
   </div>
+  <ng-template #elseBlock>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link"  routerLinkActive="active" routerLink="/NearbyShops">My preferred shops<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/MyPreferredShops">Nearby Shops</a>
+              </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" routerLink="/logout">Logout</a>
+                </li>
+          </ul>
+  </ng-template>
 </nav>

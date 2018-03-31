@@ -74,11 +74,11 @@
       class="form-control" required min minlength="6">
   </div>
   <br>
-  <div *ngIf="(passwordConfirmation.value!=password.value)&&password.touched" class="alert alert-danger">
+  <div *ngIf="(passwordConfirmation.value!=password.value)&&passwordConfirmation.touched" class="alert alert-danger">
       <span>
         is not mutched
       </span>
     </div>
-  <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="!f.valid">Sign in</button>
+  <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="!f.valid||(passwordConfirmation.value!=password.value)&&passwordConfirmation.touched">Sign in</button>
   <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
 </form>

@@ -17,12 +17,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthCookiesService } from './auth/login/auth-cookies.service';
 import { NotFoundComponent } from './somting-else/not-found/not-found.component';
 import { LogoutComponent } from './auth/logout/logout.component';
+import { NoAuthGuardService } from './auth/no-auth-guard.service';
 const appRoutes: Routes=[
   { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent},
-  { path: 'register',component: RegisterComponent},
+  { path: 'login', component: LoginComponent,canActivate:[NoAuthGuardService]},
+  { path: 'register',component: RegisterComponent,canActivate:[NoAuthGuardService]},
+  
   { path: 'logout', component: LogoutComponent,canActivate:[AuthGuard]},
-
   { path: 'MyPreferredShops', component:MyPreferredShopsComponent, canActivate:[AuthGuard]},
   { path: 'NearbyShops',component:NearbyShopsComponent,canActivate:[AuthGuard]},
 
@@ -47,7 +48,7 @@ const appRoutes: Routes=[
     HttpModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [AuthService,AuthGuard,AuthInterceptorService,AuthCookiesService,[
+  providers: [AuthService,AuthGuard,NoAuthGuardService,AuthInterceptorService,AuthCookiesService,[
     {
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptorService,

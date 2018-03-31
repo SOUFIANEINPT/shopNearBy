@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     const username= form.value.username;
   this.authservice.signInUser(email,password).subscribe(
     (data:AboutToken) => {
-     let RedirectUrl =this.activeroute.snapshot.queryParamMap.get('returnUrl')||'/NearbyShop'
+      let routereturn=this.activeroute.snapshot.queryParamMap.get('returnUrl')
+     let RedirectUrl =(routereturn!='logout'?'/NearbyShop':routereturn)||'/NearbyShop'
      this.authCookiesService.setToken(data.access_token)
      this.authCookiesService.setRefrech(data.refresh_token)
      this.router.navigateByUrl(RedirectUrl);
