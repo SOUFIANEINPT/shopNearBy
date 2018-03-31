@@ -10,14 +10,20 @@ import { NearbyShopsComponent } from './nearby-shops/nearby-shops.component';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard} from './auth/auth-guard.service';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClient} from '@angular/common/http';
+import { HttpModule} from '@angular/http';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthCookiesService } from './auth/login/auth-cookies.service';
+import { NotFoundComponent } from './somting-else/not-found/not-found.component';
 const appRoutes: Routes=[
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
   { path: 'register',component: RegisterComponent},
   { path: 'MyPreferredShops', component:MyPreferredShopsComponent, canActivate:[AuthGuard]},
   { path: 'NearbyShops',component:NearbyShopsComponent,canActivate:[AuthGuard]},
+  {path: '404',component:NotFoundComponent},
+  { path: '*', redirectTo: '/404'},
 ]
 @NgModule({
   declarations: [
@@ -27,15 +33,16 @@ const appRoutes: Routes=[
     RegisterComponent,
     MyPreferredShopsComponent,
     NearbyShopsComponent,
-    
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    HttpModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [AuthService,AuthGuard,AuthInterceptorService, [
+  providers: [AuthService,AuthGuard,AuthInterceptorService,AuthCookiesService,[
     {
       provide: HTTP_INTERCEPTORS,
       useClass:AuthInterceptorService,

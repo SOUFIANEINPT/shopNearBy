@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import 'rxjs/Rx';
+import { AboutToken } from '../../store/about-token';
+import { AuthCookiesService } from './auth-cookies.service';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +13,8 @@ import 'rxjs/Rx';
 export class LoginComponent implements OnInit {
    messgaeError={username:[],password:[]};
    messgeOfincorrect=""
-   constructor(private authservice:AuthService) { }
+   constructor(private authservice:AuthService,private authCookiesService:AuthCookiesService,
+    private router:Router,private activeroute: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -21,8 +25,11 @@ export class LoginComponent implements OnInit {
     const password = form.value.password;
     const username= form.value.username;
   this.authservice.signInUser(email,password).subscribe(
-    data => {
-console.log("data",data)
+    (data:AboutToken) => {
+     let RedirectUrl =this.activeroute.snapshot.queryParamMap.get('returnUrl')||'/NearbyShop'
+     this.authCookiesService.setToken(data.access_token)
+     this.authCookiesService.setRefrech(data.refresh_token)
+     this.router.navigateByUrl(RedirectUrl);
     }
     ,error => {
       console.log("error",error.error)

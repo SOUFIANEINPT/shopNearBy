@@ -24,11 +24,7 @@ export class AuthService {
     
   }
 
-  getToken() {
-    
-  }
-
-  isAuthenticated() {
-   
+  isAuthenticated(auth=false) {
+   return auth;
   }
   }
