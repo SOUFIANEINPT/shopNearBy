@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import { AboutToken } from '../../store/about-token';
 import { AuthCookiesService } from './auth-cookies.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,11 +15,12 @@ export class LoginComponent implements OnInit {
    messgaeError={username:[],password:[]};
    messgeOfincorrect=""
    constructor(private authservice:AuthService,private authCookiesService:AuthCookiesService,
-    private router:Router,private activeroute: ActivatedRoute) { }
+    private router:Router,private activeroute: ActivatedRoute,private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
   }
   onSignin(form:NgForm) {
+    this.spinnerService.show();
     this.messgeOfincorrect="";
     this.messgaeError={username:[],password:[]};
     const email = form.value.email;
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
     const username= form.value.username;
   this.authservice.signInUser(email,password).subscribe(
     (data:AboutToken) => {
+      this.spinnerService.hide();
       let routereturn=this.activeroute.snapshot.queryParamMap.get('returnUrl')
      let RedirectUrl =(routereturn!='logout'?'/NearbyShop':routereturn)||'/NearbyShop'
      this.authCookiesService.setToken(data.access_token)
@@ -33,9 +36,10 @@ export class LoginComponent implements OnInit {
      this.router.navigateByUrl(RedirectUrl);
     }
     ,error => {
+      this.spinnerService.hide();
       console.log("error",error.error)
-      this.messgaeError=error.error.errors;
-      this.messgeOfincorrect=error.error.message
+      this.messgaeError=error.error.errors||[];
+      this.messgeOfincorrect=error.error.message||"Try again pleaze"
  
     }
   );

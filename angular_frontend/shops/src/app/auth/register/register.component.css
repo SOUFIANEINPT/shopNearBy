@@ -7,3 +7,19 @@
 .form-label-group{
     margin-bottom: 10px;
 }
+.register{
+    padding:80px;
+    background: url('assets/images/register.jpg') fixed ;
+    background-size:cover;
+    min-height:1020px;
+    width: auto;
+    height: auto;
+}
+
+.panel{
+    background: white;
+    border-radius: 1%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding-top: 20px;
+}

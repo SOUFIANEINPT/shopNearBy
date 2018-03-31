@@ -1,84 +1,94 @@
-<div class="text-center">
-  <h1>
-    Sign Up
-  </h1>
-</div>
-<div class="alert alert-danger" *ngIf="messgeOfincorrect" >
-    {{messgeOfincorrect}}
-</div>
-<form class="form-signin" (ngSubmit)="onSignup(f)"  #f="ngForm">
-  <div class="text-center mb-4">
-  </div>
-  <div class="form-label-group">
-      <label for="email">Username</label>
-      <input type="text" id="username" name="username" ngModel class="form-control"  #username="ngModel" required>
-      <div class="alert alert-danger" *ngIf="username.errors && (username.dirty || username.touched)" >
-          <div [hidden]="!username.errors.required" >
-          username is required
-            </div>
-      </div>
-      <div class="alert alert-danger" *ngIf="messgaeError.name?.length > 0" >
-        <div *ngFor='let nameError of messgaeError.name'>  
-        {{nameError}}
-      </div>
-    </div>
-  <div class="form-label-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" ngModel class="form-control"  #email="ngModel" required pattern="[^ @]*@[^ @]*">
-    <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)" >
-        <div [hidden]="!email.errors.required" >
-            email is required
-          </div>
-          <div [hidden]="!email.errors.pattern">
-            email is invalid
-          </div>
-    </div>
-    <div class="alert alert-danger" *ngIf="messgaeError.email?.length > 0" >
-        <div *ngFor='let emailError of messgaeError.email'> 
-        {{emailError}}
-      </div>
-    </div>
-  </div>
+<div class="register">      
+          <div class="panel panel-default"> 
+              <div class="panel-heading">
+                  <div class="text-center">
+                      <h1>
+                        Sign Up
+                      </h1>
+                    </div>
+                    <ng4-loading-spinner> </ng4-loading-spinner>
+                    <div class="alert alert-danger" *ngIf="messgeOfincorrect" >
+                        {{messgeOfincorrect}}
+                    </div>  
+              </div>   
+                <form class="form-signin panel-body" (ngSubmit)="onSignup(f)"  #f="ngForm">
 
-  <div class="form-label-group">
-    <label for="password">Password</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      ngModel
-      #password="ngModel"
-      class="form-control" required minlength="6">
-      <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
-          <div [hidden]="!password.errors.required">
-            password is required!
-          </div>
-          <div [hidden]="!password.errors.minlength">
-            password must be at least 6 characters long.
-          </div>
-          <div class="alert alert-danger" *ngIf="messgaeError.password?.length > 0" >
-              <div *ngFor='let passwordError of messgaeError.password'></div>  
-              {{passwordError}}
-            </div>
-          </div>
+
+                    <div class="text-center mb-4">
+                    </div>
+                    <div class="form-label-group">
+                        <label for="email">Username</label>
+                        <input type="text" id="username" name="username" ngModel class="form-control"  #username="ngModel" required>
+                        <div class="alert alert-danger" *ngIf="username.errors && (username.dirty || username.touched)" >
+                            <div [hidden]="!username.errors.required" >
+                            username is required
+                              </div>
+                        </div>
+                        <div class="alert alert-danger" *ngIf="messgaeError.name?.length > 0" >
+                          <div *ngFor='let nameError of messgaeError.name'>  
+                          {{nameError}}
+                        </div>
+                      </div>
+                    <div class="form-label-group">
+                      <label for="email">Email</label>
+                      <input type="email" id="email" name="email" ngModel class="form-control"  #email="ngModel" required pattern="[^ @]*@[^ @]*">
+                      <div class="alert alert-danger" *ngIf="email.errors && (email.dirty || email.touched)" >
+                          <div [hidden]="!email.errors.required" >
+                              email is required
+                            </div>
+                            <div [hidden]="!email.errors.pattern">
+                              email is invalid
+                            </div>
+                      </div>
+                      <div class="alert alert-danger" *ngIf="messgaeError.email?.length > 0" >
+                          <div *ngFor='let emailError of messgaeError.email'> 
+                          {{emailError}}
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <div class="form-label-group">
+                      <label for="password">Password</label>
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        ngModel
+                        #password="ngModel"
+                        class="form-control" required minlength="6">
+                        <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+                            <div [hidden]="!password.errors.required">
+                              password is required!
+                            </div>
+                            <div [hidden]="!password.errors.minlength">
+                              password must be at least 6 characters long.
+                            </div>
+                            <div class="alert alert-danger" *ngIf="messgaeError.password?.length > 0" >
+                                <div *ngFor='let passwordError of messgaeError.password'></div>  
+                                {{passwordError}}
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="form-label-group">
+                      <label for="passwordConfirmation">Password Confirmation</label>
+                      <input
+                        type="password"
+                        id="passwordConfirmtion"
+                        name="passwordConfirmation"
+                        ngModel
+                        #passwordConfirmation="ngModel"
+                        class="form-control" required min minlength="6">
+                        <div *ngIf="(passwordConfirmation.value!=password.value)&&passwordConfirmation.touched" class="alert alert-danger">
+                            <span>
+                              is not mutched
+                            </span>
+                          </div>
+                    </div>
+                    <br>
+                  
+                    <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="!f.valid||(passwordConfirmation.value!=password.value)">Register</button>
+                    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+               </form>
         </div>
-  </div>
-  <div class="form-label-group">
-    <label for="passwordConfirmation">Password Confirmation</label>
-    <input
-      type="password"
-      id="passwordConfirmtion"
-      name="passwordConfirmation"
-      ngModel
-      #passwordConfirmation="ngModel"
-      class="form-control" required min minlength="6">
-  </div>
-  <br>
-  <div *ngIf="(passwordConfirmation.value!=password.value)&&passwordConfirmation.touched" class="alert alert-danger">
-      <span>
-        is not mutched
-      </span>
-    </div>
-  <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="!f.valid||(passwordConfirmation.value!=password.value)&&passwordConfirmation.touched">Sign in</button>
-  <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
-</form>
+</div>

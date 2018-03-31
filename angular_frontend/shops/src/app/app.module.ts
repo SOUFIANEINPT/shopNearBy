@@ -18,6 +18,7 @@ import { AuthCookiesService } from './auth/login/auth-cookies.service';
 import { NotFoundComponent } from './somting-else/not-found/not-found.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { NoAuthGuardService } from './auth/no-auth-guard.service';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 const appRoutes: Routes=[
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent,canActivate:[NoAuthGuardService]},
@@ -47,6 +48,7 @@ const appRoutes: Routes=[
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
+    Ng4LoadingSpinnerModule.forRoot(),
   ],
   providers: [AuthService,AuthGuard,NoAuthGuardService,AuthInterceptorService,AuthCookiesService,[
     {
