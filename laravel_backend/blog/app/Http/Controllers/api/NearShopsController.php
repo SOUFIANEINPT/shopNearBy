@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\api;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,15 +16,23 @@ class NearShopsController extends Controller
     public function index()
     {
         //
-        $date = new DateTime('now');
-        $tosub = new DateInterval('PT03H00M');
-        $date->sub($tosub);
-        $data->format('Y-m-d H:i:s');
-        $sql1='SELECT id FROM shopnears WHERE shopnear_id NOT IN (SELECT id FROM favorites)';
-        $sql2='SELECT id FROM shopnears WHERE shopnear_id IN (SELECT id FROM favorites WHERE updated_at>='.$date.' AND type==false)';
-        $results1 =DB::connection()->getPdo()->exec($sql1);
-        $results2=DB::connection()->getPdo()->exec($sql2);
-        $total=array_push($results,$results2);
+        //$user_id=Auth::user()->id;
+        $user_id=2;
+        $date =  new \DateTime('now');
+        $tosub = new \DateInterval('PT03H00M');
+        $date=$date->sub($tosub);
+        $date=$date->format('Y-m-d H:i:s');
+        //dd($date);
+        $sql1='SELECT * FROM shopnears WHERE id NOT IN (SELECT shopnear_id FROM favorites)';
+        $sql2='SELECT * FROM shopnears WHERE id IN (SELECT shopnear_id FROM favorites WHERE updated_at<=? AND type=0 AND user_id=?)';
+        $results1 =DB::select($sql1);
+       // dd($results1);
+        $results2=DB::select($sql2,[$date,$user_id]);
+       //dd($results2);
+       foreach($results2 as $value){
+        array_push($results1,$value);
+       }
+        dd($results1);
         return response()->json(['data' => $total], 200, [], JSON_NUMERIC_CHECK);
     }
    

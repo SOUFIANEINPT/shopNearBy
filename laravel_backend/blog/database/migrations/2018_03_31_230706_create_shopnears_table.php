@@ -16,8 +16,9 @@ class CreateShopnearsTable extends Migration
         Schema::create('shopnears', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('city');
+            $table->string('picture');
             $table->string('coordinatesLatide');
             $table->string('coordinatesLongitude');
             $table->timestamps();

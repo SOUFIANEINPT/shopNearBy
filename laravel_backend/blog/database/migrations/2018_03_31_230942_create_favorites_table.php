@@ -19,6 +19,7 @@ class CreateFavoritesTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('city');
+            $table->string('picture');
             $table->string('coordinatesLatide');
             $table->string('coordinatesLongitude');
             $table->boolean('type');
