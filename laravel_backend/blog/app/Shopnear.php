@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class preferred extends Model
+class Shopnear extends Model
 {
     //
 }

@@ -22,4 +22,6 @@
     max-width: 440px;
     margin: 0 auto;
     padding-top: 20px;
+    opacity: 0.85;
+    filter: Alpha(opacity=85)
 }

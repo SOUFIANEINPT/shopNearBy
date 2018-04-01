@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\api\auth;
+namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class NearShopsControlle extends Controller
+class PreferredShopsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,24 +15,11 @@ class NearShopsControlle extends Controller
     public function index()
     {
         //
+        $posts = Auth::user()->posts()->where('type',true)->get();
+    	return response()->json(['data' => $posts], 200, [], JSON_NUMERIC_CHECK);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         //
