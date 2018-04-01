@@ -32,8 +32,8 @@ class NearShopsController extends Controller
        foreach($results2 as $value){
         array_push($results1,$value);
        }
-        dd($results1);
-        return response()->json(['data' => $total], 200, [], JSON_NUMERIC_CHECK);
+       // dd($results1);
+        return response()->json(['data' =>$results1], 200, [], JSON_NUMERIC_CHECK);
     }
    
 }

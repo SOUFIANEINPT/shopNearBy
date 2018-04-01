@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class PreferredShopsController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class PreferredShopsController extends Controller
     public function index()
     {
         //
-        $posts = Auth::user()->posts()->where('type',true)->get();
+        $posts = Auth::user()->favorits()->where('type',true)->get();
     	return response()->json(['data' => $posts], 200, [], JSON_NUMERIC_CHECK);
     }
 
