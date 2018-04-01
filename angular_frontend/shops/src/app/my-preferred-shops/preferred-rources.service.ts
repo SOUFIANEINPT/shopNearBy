@@ -11,7 +11,7 @@ export class PreferredRourcesService {
   let headers = new HttpHeaders();
 this.token=this.authcookies.getToken();
 headers.append('Authorization','Bearer '+this.token);
-  return  this.http.get('http://localhost:8000/api/login', {
+  return  this.http.get('http://localhost:8000/api/Preferreds', {
     observe: 'body',
     responseType: 'json',
     headers:headers
@@ -21,17 +21,17 @@ headers.append('Authorization','Bearer '+this.token);
   let headers = new HttpHeaders();
 this.token=this.authcookies.getToken();
 headers.append('Authorization','Bearer '+this.token);
-  return  this.http.post('http://localhost:8000/api/login', {
+  return  this.http.post('http://localhost:8000/api/Preferreds/create', {
     observe: 'body',
     responseType: 'json',
     headers:headers
   })
  }
- deletPreferred(){
+ deletPreferred(id){
   let headers = new HttpHeaders();
 this.token=this.authcookies.getToken();
 headers.append('Authorization','Bearer '+this.token);
-  return  this.http.delete('http://localhost:8000/api/login', {
+  return  this.http.delete('http://localhost:8000/api/Preferreds/'+id, {
     observe: 'body',
     responseType: 'json',
     headers:headers

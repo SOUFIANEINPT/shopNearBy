@@ -1,9 +1,5 @@
-export class position{
+export interface Position{
     Latide:string;
     Longitude:string;
-    constructor( Latide,Longitude)
-    {
-     this.Latide=Latide;
-     this.Longitude=Longitude
-    }
+    
 }

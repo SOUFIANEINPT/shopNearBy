@@ -19,7 +19,9 @@ import { NotFoundComponent } from './somting-else/not-found/not-found.component'
 import { LogoutComponent } from './auth/logout/logout.component';
 import { NoAuthGuardService } from './auth/no-auth-guard.service';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-import { GeolocationService } from './geolocation-service.service';
+import {GeoLocationService } from './geolocation-service.service';
+import { PreferredRourcesService } from './my-preferred-shops/preferred-rources.service';
+import { NearRourcesService } from './nearby-shops/near-rources.service';
 const appRoutes: Routes=[
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent,canActivate:[NoAuthGuardService]},
@@ -52,7 +54,9 @@ const appRoutes: Routes=[
     Ng4LoadingSpinnerModule.forRoot(),
   ],
   providers: [AuthService,AuthGuard,NoAuthGuardService,AuthInterceptorService,AuthCookiesService,
-    GeolocationService,
+    GeoLocationService,
+    PreferredRourcesService,
+    NearRourcesService,
     [
     {
       provide: HTTP_INTERCEPTORS,
