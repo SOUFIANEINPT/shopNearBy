@@ -16,8 +16,8 @@ class NearShopsController extends Controller
     public function index()
     {
         //
-        //$user_id=Auth::user()->id;
-        $user_id=2;
+        $user_id=Auth::user()->id;
+        //$user_id=2;
         $date =  new \DateTime('now');
         $tosub = new \DateInterval('PT03H00M');
         $date=$date->sub($tosub);
