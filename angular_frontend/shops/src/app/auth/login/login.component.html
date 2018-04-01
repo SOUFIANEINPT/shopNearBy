@@ -1,14 +1,18 @@
-
+<div class="login">
+<div class="panel panel-default"> 
+  <div class="panel-heading">
 <div class="text-center">
   <h1>
     Sign In
   </h1>
 </div>
 <ng4-loading-spinner> </ng4-loading-spinner>
+
 <div class="alert alert-danger" *ngIf="messgeOfincorrect" >
     {{messgeOfincorrect}}
 </div>
-<form class="form-signin" (ngSubmit)="onSignin(f)"  #f="ngForm">
+</div>
+<form class="form-signin panel-body" (ngSubmit)="onSignin(f)"  #f="ngForm">
   <div class="text-center mb-4">
   </div>
 
@@ -53,3 +57,5 @@
   <button class="btn btn-lg btn-primary btn-block"  type="submit" [disabled]="!f.valid">Sign in</button>
   <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
 </form>
+</div>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { shop } from '../models/shop';
+import { shopref } from '../models/shoppref';
+import { PreferredRourcesService } from './preferred-rources.service';
 
 @Component({
   selector: 'app-my-preferred-shops',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-preferred-shops.component.css']
 })
 export class MyPreferredShopsComponent implements OnInit {
-
-  constructor() { }
+  Shoprefs:shopref[]
+  constructor(private prefshopservice:PreferredRourcesService) { }
 
   ngOnInit() {
+this.prefshopservice.getPreferred().subscribe(shops=>{
+  this.Shoprefs=shops;
+});
   }
+  
 
 }
