@@ -16,23 +16,23 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthCookiesService } from './auth/login/auth-cookies.service';
 import { NotFoundComponent } from './somting-else/not-found/not-found.component';
-import { LogoutComponent } from './auth/logout/logout.component';
 import { NoAuthGuardService } from './auth/no-auth-guard.service';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {GeoLocationService } from './geolocation-service.service';
 import { PreferredRourcesService } from './my-preferred-shops/preferred-rources.service';
 import { NearRourcesService } from './nearby-shops/near-rources.service';
+import { ShopcardComponent } from './shopcard/shopcard.component';
 const appRoutes: Routes=[
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent,canActivate:[NoAuthGuardService]},
   { path: 'register',component: RegisterComponent,canActivate:[NoAuthGuardService]},
   
-  { path: 'logout', component: LogoutComponent,canActivate:[AuthGuard]},
+ 
   { path: 'MyPreferredShops', component:MyPreferredShopsComponent, canActivate:[AuthGuard]},
   { path: 'NearbyShops',component:NearbyShopsComponent,canActivate:[AuthGuard]},
 
   {path: '404',component:NotFoundComponent},
-  { path: '**', redirectTo: '404'},
+  { path: '**', redirectTo: '/404'},
 ]
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ const appRoutes: Routes=[
     MyPreferredShopsComponent,
     NearbyShopsComponent,
     NotFoundComponent,
-    LogoutComponent
+    ShopcardComponent
   ],
   imports: [
     BrowserModule,

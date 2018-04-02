@@ -1,0 +1,13 @@
+.card-footer div a{
+height:50%;
+transition: all 1s ease-in;
+}
+.card-footer div a:hover{
+background: gray;
+}
+.card{
+    margin-top:40px
+}
+.container{
+padding:200px auto;
+}

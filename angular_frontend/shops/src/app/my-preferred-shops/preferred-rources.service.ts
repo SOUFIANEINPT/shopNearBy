@@ -12,7 +12,7 @@ export class PreferredRourcesService {
  getPreferred(){
   let headers = new HttpHeaders();
 this.token=this.authcookies.getToken();
-headers.append('Authorization','Bearer '+this.token);
+headers=headers.append('Authorization','Bearer '+this.token);
   return  this.http.get<shopref[]>('http://localhost:8000/api/Preferreds', {
     observe: 'body',
     responseType: 'json',
@@ -22,7 +22,7 @@ headers.append('Authorization','Bearer '+this.token);
  setPreferred(Shop:shopref){
   let headers = new HttpHeaders();
 this.token=this.authcookies.getToken();
-headers.append('Authorization','Bearer '+this.token);
+headers=headers.append('Authorization','Bearer '+this.token);
   return  this.http.post('http://localhost:8000/api/Preferreds/create',{Shop},{
     observe: 'body',
     responseType: 'json',
@@ -32,7 +32,7 @@ headers.append('Authorization','Bearer '+this.token);
  deletPreferred(id){
   let headers = new HttpHeaders();
 this.token=this.authcookies.getToken();
-headers.append('Authorization','Bearer '+this.token);
+headers=headers.append('Authorization','Bearer '+this.token);
   return  this.http.delete('http://localhost:8000/api/Preferreds/'+id, {
     observe: 'body',
     responseType: 'json',

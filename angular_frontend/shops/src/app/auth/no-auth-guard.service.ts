@@ -11,10 +11,10 @@ export class NoAuthGuardService {
     state: RouterStateSnapshot
   ):Observable<boolean>|Promise<boolean>|boolean {
    if( !this.authservice.isAuthenticated())
-   return !this.authservice.isAuthenticated();
-   this.router.navigate(['/NearbyShops']);
    return true;
-   
+  else{ this.router.navigate(['/NearbyShops']);
+   return false;
+  }
    ;
   }
 

@@ -14,7 +14,7 @@ export class MyPreferredShopsComponent implements OnInit {
 
   ngOnInit() {
 this.prefshopservice.getPreferred().subscribe(shops=>{
-  this.Shoprefs=shops;
+  this.Shoprefs=shops['data'];
 });
   }
   

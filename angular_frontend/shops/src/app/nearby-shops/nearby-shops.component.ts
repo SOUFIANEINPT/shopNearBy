@@ -16,7 +16,7 @@ export class NearbyShopsComponent implements OnInit {
 
   ngOnInit() {
 this.nearshops.getShopsNear().subscribe(shops=>{
-  this.Shops=shops
+  this.Shops=shops['data']
 });
   }
   onLikeOrDislike(shoplike:shop,desion:boolean)

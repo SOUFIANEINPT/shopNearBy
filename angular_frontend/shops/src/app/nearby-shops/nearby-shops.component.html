@@ -1,3 +1,26 @@
-<p>
-  nearby-shops works!
-</p>
+<div class="container">
+<div class="row">
+  <ng-container *ngFor="let sh of Shops; let i = index">
+    <div class="col-4">
+      <div  class="card">
+        <img  class="card-img-top" [src]="sh.picture" alt="{{sh.name}}">
+        <div class="card-body">
+          <h4 class="card-title">
+            {{sh.city}}
+          </h4>
+          <p class="card-text">
+            this shop is
+          </p>
+        </div>
+        <div  class="card-footer">
+            <div class="btn-group btn-group-justified">
+                <a (click)="onLikeOrDislike(sh,true)" class="btn btn-btn-default full"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+                <a (click)="onLikeOrDislike(sh,false)"  class="btn btn-btn-default"> <span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>
+              </div> 
+        </div>
+      </div> 
+    </div>
+    <div *ngIf="(i + 1) % 3 === 0" class="w-100"></div>
+  </ng-container>
+</div>
+</div>

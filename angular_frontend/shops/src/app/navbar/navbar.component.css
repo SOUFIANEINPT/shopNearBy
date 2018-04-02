@@ -1,0 +1,7 @@
+nav{
+    opacity: 0.85;
+    filter: Alpha(opacity=85);
+}
+.active{
+    font-weight: bold
+}

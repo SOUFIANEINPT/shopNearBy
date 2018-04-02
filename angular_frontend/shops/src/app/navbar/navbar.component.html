@@ -24,8 +24,9 @@
           </ul>
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link" routerLinkActive="active" routerLink="/logout">Logout</a>
+                  <a class="nav-link" (click)="logout()" routerLinkActive="active" routerLink="/logout">Logout</a>
                 </li>
           </ul>
   </ng-template>
 </nav>
+<ng4-loading-spinner> </ng4-loading-spinner>
