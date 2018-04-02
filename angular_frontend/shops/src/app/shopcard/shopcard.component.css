@@ -1,0 +1,13 @@
+button{
+    width: 100%;
+    transition: all 1s ease-in-out
+}
+button:hover{
+background:#428bca;
+}
+.card-footer{
+    padding: 0;
+}
+.card{
+    margin-bottom:20px
+}

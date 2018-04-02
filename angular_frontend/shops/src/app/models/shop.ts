@@ -5,5 +5,6 @@ export interface shop{
     city:string;
     coordinatesLatide:string;
     coordinatesLongitude:string;
-    date:Date
+    created_at:Date,
+    updated_at:Date
 }

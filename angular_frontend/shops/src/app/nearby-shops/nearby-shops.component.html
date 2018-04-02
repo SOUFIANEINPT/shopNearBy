@@ -14,8 +14,8 @@
         </div>
         <div  class="card-footer">
             <div class="btn-group btn-group-justified">
-                <a (click)="onLikeOrDislike(sh,true)" class="btn btn-btn-default full"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
-                <a (click)="onLikeOrDislike(sh,false)"  class="btn btn-btn-default"> <span class="glyphicon glyphicon-thumbs-down"></span> Unlike</a>
+                <a (click)="onLikeOrDislike(sh,1,i)" class="btn btn-btn-default"><span class="far fa-thumbs-up"></span> Like</a>
+                <a (click)="onLikeOrDislike(sh,0,i)"  class="btn btn-btn-default"> <span class="far fa-thumbs-down"></span> Dislike</a>
               </div> 
         </div>
       </div> 
@@ -24,3 +24,4 @@
   </ng-container>
 </div>
 </div>
+<ng4-loading-spinner> </ng4-loading-spinner>

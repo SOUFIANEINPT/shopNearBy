@@ -9,7 +9,8 @@ export class AuthInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
   
     // const copiedReq = req.clone({headers: req.headers.set('', '')});
-    const copiedReq = req.clone({params: req.params.set('"Accept', "application/json")});
+    const copiedReq = req.clone({params: req.params.set('"Accept', "application/json").append('Application','application/json')
+  });
     return next.handle(copiedReq);
     // return null;
   }

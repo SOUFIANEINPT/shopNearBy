@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\api;
-use App\Favoite;
+use \App\Favoite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +22,7 @@ class PreferredShopsController extends Controller
    
     public function store(Request $request)
     {
-        $favorite=new Favorite;
+        $favorite=new \App\Favorite;
         $favorite->name=request('name');
         $favorite->email=request('email');
         $favorite->city=request('city');
@@ -30,7 +30,7 @@ class PreferredShopsController extends Controller
         $favorite->coordinatesLatide=request('coordinatesLatide');
         $favorite->coordinatesLongitude=request('coordinatesLongitude');
         $favorite->coordinatesLongitude=request('coordinatesLongitude');
-        $favorite->type=request('type');
+        $favorite->type=(boolean)request('type');
         $favorite->user_id=Auth::user()->id;
         $favorite->shopnear_id=request('id');
         $favorite->save();

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { AuthCookiesService } from '../auth/login/auth-cookies.service';
 import { shop } from '../models/shop';
 import { shopref } from '../models/shoppref';
@@ -21,12 +21,15 @@ headers=headers.append('Authorization','Bearer '+this.token);
  }
  setPreferred(Shop:shopref){
   let headers = new HttpHeaders();
+  let Params = new HttpParams();
 this.token=this.authcookies.getToken();
 headers=headers.append('Authorization','Bearer '+this.token);
-  return  this.http.post('http://localhost:8000/api/Preferreds/create',{Shop},{
+Params = Params.append('type',Shop.type.toString());
+  return  this.http.post('http://localhost:8000/api/Preferreds',Shop.Shoppart,{
     observe: 'body',
     responseType: 'json',
-    headers:headers
+    headers:headers,
+    params:Params
   })
  }
  deletPreferred(id){

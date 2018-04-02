@@ -25,7 +25,7 @@ class NearShopsController extends Controller
         $date=$date->sub($tosub);
         $date=$date->format('Y-m-d H:i:s');
         //dd($date);
-        DB::table('favorites')->where('updated_at','>=',$date)->where('type','=','0')->delete();
+        DB::table('favorites')->where('updated_at','<=',$date)->where('type','=','0')->delete();
         //dd($date);
         $sql1='SELECT * FROM shopnears WHERE id NOT IN (SELECT shopnear_id FROM favorites WHERE user_id='.$user_id.')
         ORDER BY ACOS(SIN(coordinatesLatide*'.$sf.')*SIN('.$lat*$sf.') + COS(coordinatesLatide*'.$sf.')*COS('.$lat*$sf.')*COS((coordinatesLongitude-'.$lon.')*'.$sf.'))';
