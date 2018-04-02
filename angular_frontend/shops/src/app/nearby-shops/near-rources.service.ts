@@ -23,7 +23,7 @@ export class NearRourcesService {
     Params = Params.append('longitude',this.position.coords.Longitude);
     this.token=this.authcookies.getToken();
     headers=headers.append('Authorization','Bearer '+this.token);
-      return  this.http.get<shop[]>('http://localhost:8000/api/shops?latide=30.5555&longitude=-6.333',{
+      return  this.http.get<shop[]>('http://localhost:8000/api/shops',{
         observe: 'body',
         responseType: 'json',
         headers:headers,

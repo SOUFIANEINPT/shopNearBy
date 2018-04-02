@@ -5,3 +5,6 @@ nav{
 .active{
     font-weight: bold
 }
+#logout{
+    cursor: pointer;
+}
