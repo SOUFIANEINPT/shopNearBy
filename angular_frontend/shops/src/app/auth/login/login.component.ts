@@ -31,9 +31,10 @@ export class LoginComponent implements OnInit {
       this.spinnerService.hide();
       //this.authservice.isAuthenticated();
       let routereturn=this.activeroute.snapshot.queryParamMap.get('returnUrl')
-     let RedirectUrl =routereturn||'/NearbyShop'
+     let RedirectUrl =routereturn||'/NearbyShops'
      this.authCookiesService.setToken(data.access_token)
      this.authCookiesService.setRefrech(data.refresh_token)
+     console.log("url",RedirectUrl)
      this.router.navigateByUrl(RedirectUrl);
     }
     ,error => {

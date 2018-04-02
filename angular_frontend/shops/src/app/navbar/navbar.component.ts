@@ -23,7 +23,8 @@ logout()
   let headers = new HttpHeaders();
 this.token=this.authcookies.getToken();
 headers=headers.append('Authorization','Bearer '+this.token);
-   this.http.post('http://localhost:8000/api/logout', {
+console.log("error",headers)
+   this.http.get('http://localhost:8000/api/logout', {
     observe: 'body',
     responseType: 'json',
     headers:headers
@@ -33,7 +34,6 @@ headers=headers.append('Authorization','Bearer '+this.token);
     this.authcookies.deleteToken();
     this.authcookies.deleteRefrech();
   },error=>{
-    console.log("error",error)
     this.spinnerService.hide();
   })
 }
