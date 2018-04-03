@@ -15,7 +15,7 @@ token;
       responseType: 'json'
     })
   }
-  signUpUser(name: string,email:string,password: string) {
+  signUpUser(name:string,email:string,password: string) {
    return this.http.post('http://localhost:8000/api/register',{'name':name,'email':email,'password':password}, {
       observe: 'body',
       responseType: 'json'

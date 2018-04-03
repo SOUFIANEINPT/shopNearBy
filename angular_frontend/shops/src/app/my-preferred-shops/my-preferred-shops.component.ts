@@ -11,15 +11,21 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 export class MyPreferredShopsComponent implements OnInit {
   Shoprefs:shopref[]
-  constructor(private prefshopservice:PreferredRourcesService,private spinnerService: Ng4LoadingSpinnerService) { }
+  ErrorShopVoid="";
+  constructor(private prefshopservice:PreferredRourcesService,private spinnerService: Ng4LoadingSpinnerService) { 
+    spinnerService.show();
+  }
 
   ngOnInit() {
-    this.spinnerService.show();
+
     this.prefshopservice.getPreferred().subscribe(shops=>{
       this.spinnerService.hide();
     this.Shoprefs=shops['data'];
+    if(shops['data'].length<=0)
+    this.ErrorShopVoid="You didn't Like any shop"
 },error=>{
   this.spinnerService.hide();
+  this.ErrorShopVoid="Error"
 });
   }
   

@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   this.authservice.signInUser(email,password).subscribe(
     (data:AboutToken) => {
       this.spinnerService.hide();
-      //this.authservice.isAuthenticated();
       let routereturn=this.activeroute.snapshot.queryParamMap.get('returnUrl')
      let RedirectUrl =routereturn||'/NearbyShops'
      this.authCookiesService.setToken(data.access_token)

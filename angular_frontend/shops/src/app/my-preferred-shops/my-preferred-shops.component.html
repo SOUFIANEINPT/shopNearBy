@@ -1,5 +1,10 @@
     <div class="container">
       <div class="row">
+          <div class="text-center"  *ngIf='ErrorShopVoid'>
+              <h1>
+                {{ErrorShopVoid}}
+              </h1>
+               </div>
       <ng-container *ngFor="let sh of  Shoprefs; let i = index">
         <div class="col-4">
           <app-shopcard [shopping-cart]="sh"></app-shopcard>

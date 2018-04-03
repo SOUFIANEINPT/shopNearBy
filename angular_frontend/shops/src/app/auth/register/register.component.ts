@@ -32,7 +32,6 @@ messgeOfincorrect="";
   console.log("data",data)
   this.authCookiesService.setToken(data.access_token)
   this.authCookiesService.setRefrech(data.refresh_token)
-  //this.authservice.isAuthenticated()
   this.router.navigate(['/NearbyShops']);
       }
       ,error => {

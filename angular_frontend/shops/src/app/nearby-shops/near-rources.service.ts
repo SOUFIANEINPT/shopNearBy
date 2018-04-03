@@ -18,7 +18,6 @@ export class NearRourcesService {
     let headers = new HttpHeaders();
     let Params = new HttpParams();
     //console.log('postion',this.position.coords)
-    // Begin assigning parameters
     Params = Params.append('latide',this.position.coords.Latide);
     Params = Params.append('longitude',this.position.coords.Longitude);
     this.token=this.authcookies.getToken();

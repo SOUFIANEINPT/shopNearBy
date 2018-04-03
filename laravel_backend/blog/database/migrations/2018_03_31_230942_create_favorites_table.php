@@ -17,7 +17,7 @@ class CreateFavoritesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('city');
             $table->string('picture');
             $table->string('coordinatesLatide');

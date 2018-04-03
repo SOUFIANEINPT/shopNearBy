@@ -12,7 +12,8 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 export class NearbyShopsComponent implements OnInit {
  Shops:shop[]
- shoplike:shopref
+ shoplike:shopref;
+ ErrorShopVoid="";
   constructor(private nearshops:NearRourcesService,private prefshopservice:PreferredRourcesService
     ,private spinnerService: Ng4LoadingSpinnerService) { }
 
@@ -21,8 +22,13 @@ export class NearbyShopsComponent implements OnInit {
 this.nearshops.getShopsNear().subscribe(shops=>{
   this.spinnerService.hide();
   this.Shops=shops['data']
+  if(shops['data'].length<=0)
+  this.ErrorShopVoid="There is no Shops"
+
   console.log("data",shops['data'])
+
 },error=>{
+  this.ErrorShopVoid="Error"
   this.spinnerService.hide();
 });
   }

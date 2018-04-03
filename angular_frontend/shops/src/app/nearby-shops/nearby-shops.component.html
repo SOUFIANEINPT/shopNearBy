@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="text-center" *ngIf='ErrorShopVoid'>
+ <h1>
+    {{ErrorShopVoid}}
+ </h1>
+  </div>
 <div class="row">
   <ng-container *ngFor="let sh of Shops; let i = index">
     <div class="col-4">
